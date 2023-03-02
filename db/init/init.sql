@@ -42,3 +42,9 @@ CREATE TABLE data
 
 INSERT INTO data (id, txt) VALUES (1, "YATANI");
 INSERT INTO data (id, txt) VALUES (2, "XXXXXXXXXXXXXXXXX");
+
+CREATE SCHEMA tozono_db;
+USE tozono_db;
+
+INSERT INTO data (id, txt) VALUES (1, "tozono!");
+INSERT INTO data (id, txt) VALUES (2, "tozono!!");
