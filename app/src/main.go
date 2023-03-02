@@ -12,9 +12,9 @@ import (
 
 func main() {
     http.HandleFunc("/skakeda", skakeda)
+    http.HandleFunc("/myamagata", myamagata)
     http.ListenAndServe(":8000", nil)
 }
-
 
 func skakeda(w http.ResponseWriter, r *http.Request) {
     db, err := sql.Open("mysql", "root:8jjStzw7@(mysql-container)/test")
@@ -40,3 +40,29 @@ func skakeda(w http.ResponseWriter, r *http.Request) {
                 }
     t.Execute(w, body)
 }
+
+func myamagata(w http.ResponseWriter, r *http.Request) {
+    db, err := sql.Open("mysql", "root:8jjStzw7@(mysql-container)/myamagata_db")
+                if err != nil {
+                        panic(err.Error())
+                }
+    defer db.Close()
+
+     rows, err := db.Query("SELECT txt FROM data WHERE id=1")
+                if err != nil {
+                        panic(err.Error())
+                }
+
+    defer rows.Close()
+
+    var body string
+    rows.Next()
+    rows.Scan(&body)
+// log.Print(body)
+    t , err := template.ParseFiles("main.tpl")
+                if err != nil {
+                        panic(err.Error())
+                }
+    t.Execute(w, body)
+}
+
