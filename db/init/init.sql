@@ -49,6 +49,14 @@ INSERT INTO data (id, txt) VALUES (2, "XXXXXXXXXXXXXXXXX");
 CREATE SCHEMA tozono_db;
 USE tozono_db;
 
+DROP TABLE IF EXISTS data;
+
+CREATE TABLE data
+(
+  id           INT(10),
+  txt     VARCHAR(40)
+);
+
 INSERT INTO data (id, txt) VALUES (1, "tozono!");
 INSERT INTO data (id, txt) VALUES (2, "tozono!!");
 
